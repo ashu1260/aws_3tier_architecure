@@ -1,0 +1,31 @@
+- hosts: ec2
+  gather_facts: no 
+
+  tasks:
+    - name:  install python
+      package:
+        name: 
+         - python
+         - php 
+         - php-mysqlnd  
+        state: present
+
+
+
+    - name: create a dir in /var/www/
+      file:
+        path: /var/www/inc
+        state: directory
+
+    - name: copy the database info file
+      copy:
+        src: sample.php 
+        dest: /var/www/html             
+
+
+
+      copy:
+        src:  mysqldb.inc
+        dest: /var/www/inc/dbinfo.inc
+        decrypt: yes
+      become: yes
