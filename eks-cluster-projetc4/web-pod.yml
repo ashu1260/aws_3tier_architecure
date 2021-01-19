@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  labels:
+    app: php-webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: php-webapp
+  template:
+    metadata:
+      labels:
+        app: php-webapp
+    spec:
+      containers:
+      - image: ashahu18/myimage:v1
+        name: web-appcon
+        ports:
+        - containerPort: 80
